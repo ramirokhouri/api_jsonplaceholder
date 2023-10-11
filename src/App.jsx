@@ -2,7 +2,7 @@ import { useFetch } from "./useFetch";
 import "./App.css";
 
 function App() {
-  const { data, loading } = useFetch(
+  const { data, loading, error } = useFetch(
     "https://jsonplaceholder.typicode.com/users"
   );
   return (
@@ -10,6 +10,7 @@ function App() {
       <h1>Fetch Like a PRO</h1>
       <div className="card">
         <ul>
+          {error && <li>Error: {error}</li>}
           {loading && <li>Loading...</li>}
           {data?.map((user) => (
             <li key={user.id}>{user.name}</li>
